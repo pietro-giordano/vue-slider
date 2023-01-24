@@ -32,24 +32,30 @@ createApp({
         }
 
     },
+
     methods: {
 
-        changeImg(direction) {
-            if(direction == 'next') {
-                if(this.index == this.slides.length - 1) {
-                    this.index = 0;
-                } else {
-                    this.index++;
-                }
+        nextImg() {    
+            if(this.index == this.slides.length - 1) {
+                this.index = 0;
             } else {
-                if (this.index == 0) {
-                    this.index = this.slides.length - 1;
-                } else {
-                    this.index--;
-                }
+                this.index++;
             }
-            console.log(this.index)
-        }
+        },    
+
+        prevImg() {
+            if (this.index == 0) {
+                this.index = this.slides.length - 1;
+            } else {
+                this.index--;
+            }
+        },
+
+    },
+
+    mounted() {
+
+        setInterval(this.nextImg, 3000);
 
     }
 
