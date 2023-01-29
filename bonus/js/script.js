@@ -4,6 +4,7 @@ createApp({
     data() {
 
         return {
+            autoplay: null,
             slides: [
                 {
                     image: 'img/01.webp',
@@ -36,26 +37,43 @@ createApp({
     methods: {
 
         nextImg() {    
+
             if(this.index == this.slides.length - 1) {
                 this.index = 0;
             } else {
                 this.index++;
             }
+
         },    
 
         prevImg() {
+
             if (this.index == 0) {
                 this.index = this.slides.length - 1;
             } else {
                 this.index--;
             }
+
         },
+
+        startAutoplay() {
+
+            this.autoplay = setInterval(this.nextImg, 3000);
+
+        },
+
+        stopAutoplay() {
+
+            this.autoplay = clearInterval(this.autoplay);
+            this.autoplay = null;
+
+        }
 
     },
 
     mounted() {
 
-        setInterval(this.nextImg, 3000);
+        this.startAutoplay();
 
     }
 
